@@ -3,7 +3,7 @@
 
 include_once 'session.php' ;
 
-
+// what the fuck is going on
 
 ?>
 
