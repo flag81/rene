@@ -1,0 +1,447 @@
+/* 
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+
+    function get_categories()
+    {  
+        var classname = "rene_category";
+        var method = "get_all_categories";
+        var args = new Array('') ;
+        
+        console.log('get_categories');
+        
+        var class_data = {"classname": classname, "method": method, "args": args };
+    
+    
+        //get all categories and load them in the select box
+        var request =  $.ajax({
+            type: 'POST',
+            url: 'controller.php',
+            data: class_data ,
+            dataType: "text" 
+        });
+        
+        
+        
+        request.done(function(msg){
+            
+        //alert(msg); 
+            
+            var json = jQuery.parseJSON(msg);
+            var inHTML = "";
+            
+            $( "#rene_categories tbody" ).empty();
+            
+            //loop through json object
+            $.each(json, function(idx, obj) {
+                
+                //alert(obj.cat_id + ' '+ obj.cat_name);
+                
+                inHTML += '<option value="' + obj.cat_id+ '">' + obj.cat_name + '</option>';
+                
+                $("#SelectBox").empty().append(inHTML);
+                
+                //check if exists
+                $("#category_id").empty().append(inHTML);
+                $("#category_id_edit").empty().append(inHTML);
+                
+                
+                
+                
+                $( "#rene_categories tbody" ).append( "<tr>" +
+                    "<td>" + obj.cat_id + "</td>" +
+                    "<td>" + obj.cat_name + "</td>" +
+                    "<td><input type=button id=\"edit_cat\" value=\"Edito\" name=\"" + obj.cat_id  +"\"></td>" +
+                    "</tr>" );
+            
+            });
+            
+             //activate first element of the categories selectbox, after activation tringger change event (chained events)
+                $( "#SelectBox" ).prop("selectedIndex",0).trigger("change");
+
+        });
+                                
+        request.fail(function(jqXHR, textStatus) {
+            alert('Kishte nje problem me listen e kategorive. Lajemro Administratorin !!!');  
+         });
+        
+        
+    }
+    
+    
+    
+    function get_category(cat_id)
+    {  
+        var classname = "rene_category";
+        var method = "get_category";
+        var args = [];
+        var cat_name ;
+        
+        args.push(cat_id);
+         
+        var class_data = {"classname": classname, "method": method, "args": args };
+    
+    
+        //get all categories and load them in the select box
+        var request =  $.ajax({
+            type: 'POST',
+            url: 'controller.php',
+            data: class_data ,
+            dataType: "text" 
+        });
+        
+ 
+        request.done(function(msg){
+            
+
+        
+            var json = jQuery.parseJSON(msg);
+            
+            $.each(json, function(idx, obj) {
+                
+                cat_name = obj.cat_name 
+            });
+            
+
+            //alert(cat_name);
+            //console.log();
+            
+            $("#cat_name_edit").val(cat_name);
+            
+            return cat_name ;
+           
+            //loop through json object
+       
+ 
+        });
+                                
+        request.fail(function(jqXHR, textStatus) {
+            alert('Kishte nje problem me nxjerrjen e shenimeve. Lajemro Administratorin !!!');  
+         });
+        
+        
+        //return 'cat_name' ;
+        
+    }
+    
+    
+        function add_prod_func(cat_name)
+        {
+            
+         
+            //console.log("oid" + order_id);
+         
+            var classname = "rene_category";
+            var method = "add_category";      
+            var args = [];
+            var cat_name = cat_name;
+         
+            args.push(cat_name);
+         
+            // disable to prevent multible 
+            //$(this).prop('disabled',true);
+         
+            var class_data = {"classname": classname, "method": method, "args": args }; // JSON object can be passed to php 
+         
+            var request =  $.ajax({
+                type: 'POST',
+                url: 'controller.php',
+                data: class_data,
+                dataType: "text" 
+                
+            });
+        
+           request.done(function(msg){
+                alert(msg); 
+                 
+                 return true;
+                
+            });
+        
+            request.fail(function(jqXHR, textStatus) {
+                alert('#delete_order fail.'); 
+                
+                return '#add_cat fail';
+            });
+            
+            
+            
+            
+            
+        }
+        
+        
+        function delete_cat()
+        {
+            
+         
+            //console.log("oid" + order_id);
+         
+            var classname = "rene_category";
+            var method = "delete_category";      
+            var args = [];
+            
+            
+            var cat_id = $("#cat_id_edit").val();
+         
+            args.push(cat_id);
+         
+            // disable to prevent multible 
+            //$(this).prop('disabled',true);
+         
+            var class_data = {"classname": classname, "method": method, "args": args }; // JSON object can be passed to php 
+         
+            var request =  $.ajax({
+                type: 'POST',
+                url: 'controller.php',
+                data: class_data,
+                dataType: "text" 
+                
+            });
+        
+           request.done(function(msg){
+                alert(msg); 
+                
+                // refresh order list by simulating the click even on List orders button with spec id #order_list
+                
+                //remove previous list               
+                //$( "#rene_orders tbody" ).empty();
+                                                
+            
+                // reload order list
+                //$( "#order_list" ).trigger( "click" );
+                 
+                 return true;
+                
+            });
+        
+            request.fail(function(jqXHR, textStatus) {
+                alert('#delete_cat fail.'); 
+                
+                return '#fail';
+            });
+            
+            
+            
+            
+            
+        }
+        
+        
+        function update_cat()
+        {
+            
+         
+            //console.log("oid" + order_id);
+         
+         
+         var cat_id = $("#cat_id_edit").val();
+         var cat_name = $("#cat_name_edit").val();
+         
+         
+            var classname = "rene_category";
+            var method = "update_category";      
+            var args = [];
+
+         
+            args.push(cat_id);
+            args.push(cat_name);
+          
+            // disable to prevent multible 
+            //$(this).prop('disabled',true);
+         
+         
+            var class_data = {"classname": classname, "method": method, "args": args }; // JSON object can be passed to php 
+         
+            var request =  $.ajax({
+                type: 'POST',
+                url: 'controller.php',
+                data: class_data,
+                dataType: "text" 
+                
+            });
+        
+           request.done(function(msg){
+                alert(msg); 
+                
+                // refresh order list by simulating the click even on List orders button with spec id #order_list
+                
+                //remove previous list               
+                //$( "#rene_orders tbody" ).empty();
+                                                
+            
+                // reload order list
+                //$( "#order_list" ).trigger( "click" );
+                 
+                 return true;
+                
+            });
+        
+            request.fail(function(jqXHR, textStatus) {
+                alert('#delete_cat fail.'); 
+                
+                return '#fail';
+            });
+            
+            
+            
+            
+            
+        }
+        
+        
+        
+        
+$(function () {
+              
+        
+        var dialog,  dialog_cat, dialog_cat_edit, form,
+     
+        emailRegex = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/,
+        name = $( "#name" ),
+
+        allFields = $( [] ).add( name ),
+        tips = $( ".validateTips" );
+    
+        function add_cat_btn()
+        {
+            
+            var cat_name = $('#cat_name').val();
+            
+            if(!cat_name.trim())
+            {
+                alert("Ju lutem plotesoni emrin e kategorise!");
+                return false;
+ 
+            }
+            
+            //console.log(cat_name);
+            
+            var t = add_cat_func(cat_name);
+            dialog_cat.dialog( "close" );
+            
+        }
+ 
+ 
+ 
+        function edit_cat_btn()
+        {
+            
+            $('#cat_name_edit').val("ttttt");
+            
+            if(!cat_name_edit.trim())
+            {
+                alert("Ju lutem plotesoni emrin e kategorise!");
+                return false;
+
+            }
+            
+            //console.log(cat_name);
+            
+            //var t = add_cat_func(cat_name);
+            
+            dialog_cat.dialog( "close" );
+            
+        }
+        
+        
+        function get_cat_info(cat_id)
+        {
+            //get cat_name from db
+            
+            
+            //var o_id = dialog_cat_edit.data( 'order_id');
+            
+            //alert(o_id);
+            
+        }
+    
+    dialog_cat = $( "#dialog-form-cat" ).dialog({
+            autoOpen: false,
+            height: 300,
+            width: 400,
+            modal: true,
+            buttons: {
+            "Shto kategorine": add_cat_btn,
+            Cancel: function() {
+            dialog_cat.dialog( "close" );
+        }
+      },
+      close: function() {
+        //form[ 0 ].reset();
+        allFields.removeClass( "ui-state-error" );
+      }
+      
+      
+    });
+    
+    
+    dialog_cat_edit = $( "#dialog-form-cat-edit" ).dialog({
+            autoOpen: false,
+            height: 400,
+            width: 500,
+            modal: true,
+            buttons: {
+            "Edito kategorine": update_cat, 
+            "Fshi kategorine": delete_cat,
+            Cancel: function() {
+            dialog_cat_edit.dialog( "close" );
+        }
+      },
+      close: function() {
+        //form[ 0 ].reset();
+        allFields.removeClass( "ui-state-error" );
+      }
+      
+      
+    });    
+              
+              
+              
+    $('#add_cat').click(function () {
+        
+        //open the diaolg box (div element (wizard))
+        dialog_cat.dialog( "open" );
+    });
+    
+    
+    $('#cat_list').click(function () {
+        
+;
+        //open the diaolg box (div element (wizard))
+        get_categories();
+    });
+    
+    
+    
+    //open cat dialog
+
+    $(document).on( "click", "#edit_cat", function() {
+                
+        var cat_id = $(this).attr("name");  
+        
+        $("#cat_id_edit").val(cat_id);
+        
+        
+        // add data to the dialog box
+        dialog_cat_edit.data( "cat_id", cat_id );
+        dialog_cat_edit.data( "cat_name", cat_name );
+        
+        
+        //open dialog
+        dialog_cat_edit.dialog( "open" );
+        
+        var cat_name = get_category(cat_id);
+
+        
+       // $("#cat_id_edit").val(cat_name);        
+        
+    });
+    
+    
+              
+              
+});
