@@ -5,7 +5,10 @@ include('user_session.php');
 //kill session if active
 $current_session = new user_session();
 $current_session->stop_user_session();
-				
+	
+
+
+
 
 if(isset($_GET['msgid']))
 {
@@ -14,7 +17,13 @@ if(isset($_GET['msgid']))
 }
 
 
-	
+
+
+
+
+
+
+
 
 ?>
 
@@ -23,6 +32,10 @@ if(isset($_GET['msgid']))
 <html>
 <head>
 
+    
+    
+    
+    
 <link rel="stylesheet" type="text/css" href="css/styles.css">
 
 

@@ -11,11 +11,9 @@
 //$classname -> get_all_categories();
 
 
-
 class rene_category {
     //put your code here
     
-
      
     public  $result;
     public  $link;
@@ -25,12 +23,6 @@ class rene_category {
         $this->result = false;
         
     }
-    
-    //class foo {
-    //function bar($arg, $arg2) {
-    //    echo __METHOD__, " got $arg and $arg2\n";
-    //}
-    //}
     
     
     function update_category($cat_id, $cat_name)

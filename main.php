@@ -1,6 +1,6 @@
 <?php
 
-
+//error_reporting(E_ALL);
 
 include 'rene_user.php';
 include 'user_session.php';
@@ -20,7 +20,7 @@ $emp_password = $_POST['password'];
 //check that the user is calling the page from the login form and not accessing it directly 
 //and redirect back to the login form if necessary 
 if (!isset($_POST['user_name']) || !isset($_POST['password'])) {
-    header("Location: index.php?msgid=209");
+    header("Location: index.php?msgid=209?");
 } else 
     {
 
@@ -41,7 +41,7 @@ if (!isset($_POST['user_name']) || !isset($_POST['password'])) {
     //echo $emp['count(emp_id)'];
     
     
-    if ($emp['count(emp_id)'] != 0) {
+    if ($emp['num_rows'] == 1) {
         
         session_start();
 
@@ -55,7 +55,6 @@ if (!isset($_POST['user_name']) || !isset($_POST['password'])) {
             'lname' => $emp["emp_lname"],
 
                 );
-
         
         //start session and set session data
         
@@ -66,12 +65,10 @@ if (!isset($_POST['user_name']) || !isset($_POST['password'])) {
         
         //ridirect inside app
         header('Location: rene.php?');
-
-        
-        
+  
 
     } else {
-        header("Location: index.php?msgid=209");
+        header("Location: index.php?msgid=nr_row_not_1");
     }
 }
 

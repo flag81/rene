@@ -130,6 +130,8 @@ class rene_user {
                 $row_cnt = mysqli_num_rows($result);
                 $row = mysqli_fetch_assoc(mysqli_query($link, $sql)); 
                 
+                $row['num_rows'] = $row_cnt ;
+                
                 return $row ;
 
             }

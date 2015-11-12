@@ -198,13 +198,13 @@
 
     
 <div style="float: left">
-    <select name="drop1" id="SelectBox" size="4" style="width:200px;height : 200px">
+    <select name="drop1" id="select_cat" size="4" style="width:200px;height : 200px">
 
     </select>
 </div>
     
 <div style="float: left;">    
-    <select name="drop1" id="SelectBox2" size="4" multiple="multiple" style="width:200px;height : 200px">
+    <select name="drop1" id="select_prod" size="4" multiple="multiple" style="width:200px;height : 200px">
 
 
 
@@ -214,7 +214,7 @@
 </div>
 
 <div style="float: left">    
-    <select id="SelectedItems" size="4" multiple="multiple" style="width:200px;height : 200px"></select>
+    <select id="order_items" size="4" multiple="multiple" style="width:200px;height : 200px"></select>
     <p id="selectedValues"></p>
     <input type="button" id="add_order" value="Regjistro Fakturen">
    

@@ -42,7 +42,7 @@
                 
                 inHTML += '<option value="' + obj.cat_id+ '">' + obj.cat_name + '</option>';
                 
-                $("#SelectBox").empty().append(inHTML);
+                $("#select_cat").empty().append(inHTML);
                 
                 //check if exists
                 $("#category_id").empty().append(inHTML);
@@ -60,7 +60,7 @@
             });
             
              //activate first element of the categories selectbox, after activation tringger change event (chained events)
-                $( "#SelectBox" ).prop("selectedIndex",0).trigger("change");
+                $( "#select_cat" ).prop("selectedIndex",0).trigger("change");
 
         });
                                 
@@ -440,6 +440,66 @@ $(function () {
        // $("#cat_id_edit").val(cat_name);        
         
     });
+    
+    
+    
+     $('#select_cat').change(function () {
+            
+            var str = "",  
+            inHTML = "",
+            items;
+            
+            //console.log('x');
+            
+            var classname = "rene_product";
+            var method = "get_all_products";
+            var args = new Array();
+         
+            var category_id = $(this).val() ;
+         
+            //console.log(category_id);
+         
+            args.push(category_id);
+            
+            var class_data = {"classname": classname, "method": method, "args": args };
+         
+         
+            //console.log(class_data);
+
+      
+            var request =  $.ajax({
+                type: 'POST',
+                url: 'controller.php',
+                data: class_data ,
+                dataType: "text" 
+                
+            });
+        
+        
+            request.done(function(msg){
+            
+                var json = jQuery.parseJSON(msg);
+                var inHTML = '';
+            
+            
+                $.each(json, function(idx, obj) {
+                
+                    inHTML += '<option value="' + obj.prod_price + '">' + obj.prod_name + '</option>';                
+                    $("#select_prod").empty().append(inHTML);
+                    
+                });
+
+
+            });
+        
+                        
+            request.fail(function(jqXHR, textStatus) {
+                alert('#select_prod failure');  
+      
+            });
+
+
+        });
     
     
               
