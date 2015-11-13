@@ -12,15 +12,18 @@
 
 <div id="test"></div>
     
-<div id="dialog-form" title="Shto shenime">
+<div id="dialog-form-order-edit" title="Shto shenime">
   <form>
-    <fieldset>
-        <p id="order_info"></p>
-      <textarea cols="20" rows="5" name="name" id="name" value="" ></textarea>
+      <table>
+          <tr>
+                <td>ID: <td><input type="text" id="order_id" disabled="true">*
+          <tr>
+              <td>Shenime:<td><textarea cols="20" rows="5" name="name" id="name" value="" ></textarea>
       
       <!-- Allow form submission with keyboard without duplicating the dialog button -->
       <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
-    </fieldset>
+  
+      </table>
   </form>
 </div>
     
@@ -233,7 +236,7 @@
     
 
         <input type="button" id="order_list" value="Listo Fakturat"/> 
-        <select id="emp_list">
+        <select id="user_list">
             
         </select>
         

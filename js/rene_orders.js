@@ -44,7 +44,7 @@
             
             var order_id = order_id; 
          
-            console.log("oid" + order_id);
+            console.log("oid:" + order_id);
          
             var classname = "rene_orders";
             var method = "delete_order";      
@@ -231,15 +231,16 @@
 $(function () {
     
     
-    
-    
-        var dialog, form,
+
+        
+        var dialog, dialog_order_edit, form,
      
         emailRegex = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/,
         name = $( "#name" ),
 
         allFields = $( [] ).add( name ),
         tips = $( ".validateTips" );
+        
         
  
         function updateTips( t ) {
@@ -277,6 +278,8 @@ $(function () {
  
  
         function add_note() {
+            
+            
             var valid = true;
             allFields.removeClass( "ui-state-error" );
  
@@ -285,7 +288,8 @@ $(function () {
             valid = valid && checkRegexp( name, /^[a-z]([0-9a-z_\s])+$/i, "Lejohen vetem shkronja dhe numra te shenohen ne kete fushe" );
 
             // get data from the dialog box widget id
-            var o_id = dialog.data('order_id');
+            
+            var o_id = $("#order_id").val();
             
             //get the notice
             var notice = name.val();
@@ -296,7 +300,7 @@ $(function () {
                 
                 // call update method
                 update_order(o_id, notice);
-                dialog.dialog( "close" );
+                //dialog.dialog( "close" );
             }
             
             return valid;
@@ -307,31 +311,17 @@ $(function () {
         function del_order_btn()
         {
      
-            var o_id = dialog.data('order_id');
+            var order_id = $("#order_id").val();
             
-            delete_order(o_id);
-            dialog.dialog( "close" );
+            delete_order(order_id);
+            //dialog.dialog( "close" );
             
         }
     
-              
-        
-        var dialog_order_edit, form,
-     
-        emailRegex = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/,
-        name = $( "#name" ),
-
-        allFields = $( [] ).add( name ),
-        tips = $( ".validateTips" );
-        
+                  
     
         function add_user_btn()
         {
-            
-            //var prod_name = $('#prod_name').val();
-            //var prod_price = $('#prod_price').val();            
-            //var prod_cat = $("#category_id option:selected").val();
-            
             
             var id = $('#user_id').val();
             var fname = $('#user_fname').val();
@@ -365,27 +355,12 @@ $(function () {
             
             var t = add_user(id, fname , lname, phone, email,  level, password);
             
-            dialog_prod_add.dialog( "close" );
+            dialog_order_add.dialog( "close" );
             
         }
  
  
-        function test()
-        {
-            
-        }
- 
- 
-        function del_order_btn()
-        {
-            
-            
-            var res = delete_user();
-            
-            dialog_user_edit.dialog( "close" );
-            
-        }
- 
+
  
         function edit_user_btn()
         {
@@ -407,7 +382,7 @@ $(function () {
 
     
     
-    dialog_order_edit = $( "#dialog-form" ).dialog({
+    dialog_order_edit = $( "#dialog-form-order-edit" ).dialog({
             autoOpen: false,
             open: function(){
                 $("#order_info").empty().append("ID:"+ dialog_order_edit.data('order_id'));
@@ -499,11 +474,11 @@ $(function () {
     $(document).on( "click", "#edit_order", function() {
         
         
-        var order_id = $(this).attr("name");  
-        //alert(order_id);
+        var order_id = $(this).attr("name");
+        $("#order_id").val(order_id)  ;
         
         
-        dialog_order_edit.data( 'order_id', order_id );
+        //dialog_order_edit.data( 'order_id', order_id );        
         dialog_order_edit.dialog( "open" );
         
     });
@@ -700,33 +675,7 @@ $(function () {
     });
    
     
-    $("#select_prod").dblclick(function () {
-    
-
-        inHTML = "";
-        total= 0 ;
-        
-      
-    
-        $("#select_prod option:selected").each(function () {
-            inHTML += '<option value="' + $(this).val() + '">' + $(this).text() + ' - ' + $(this).val() + '</option>';
-             console.log(inHTML);
-        });
-    
-        $("#order_items").append(inHTML);
-    
-    
-        $("#order_items option").each(function () {
-
-           curr = Number($(this).val()) ;
-           total += curr ;        
-           
-        });
-
-        $("#selectedValues").text('Totali: ' + total);
-
-
-    });
+ 
     
     
     $("#order_items").dblclick(function () {
@@ -751,5 +700,34 @@ $(function () {
     
     });
     
-              
+    
+        
+        var total ;
+        var product_list = '';
+        var per_page = 10 ;
+        
+        $( "#from_date" ).datepicker({
+            defaultDate: "+1w",
+            changeMonth: true,
+            numberOfMonths: 1,
+            onClose: function( selectedDate ) {
+                $( "#to_date" ).datepicker( "option", "minDate", selectedDate );
+            }
+        });
+    
+        $( "#to_date" ).datepicker({
+            defaultDate: "+1w",
+            changeMonth: true,
+            numberOfMonths: 1,
+            onClose: function( selectedDate ) {
+                $( "#from_date" ).datepicker( "option", "maxDate", selectedDate );
+            }
+        
+        });
+    
+     
+    
+    
+    
+    
 });

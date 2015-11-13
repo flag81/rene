@@ -83,40 +83,8 @@ var fanme, lname, main_id ;
     
  
     ///// CATEGORY END //////////////////////
-    
-        var total ;
-        var product_list = '';
-        var per_page = 10 ;
-        
-        $( "#from_date" ).datepicker({
-            defaultDate: "+1w",
-            changeMonth: true,
-            numberOfMonths: 1,
-            onClose: function( selectedDate ) {
-                $( "#to_date" ).datepicker( "option", "minDate", selectedDate );
-            }
-        });
-    
-        $( "#to_date" ).datepicker({
-            defaultDate: "+1w",
-            changeMonth: true,
-            numberOfMonths: 1,
-            onClose: function( selectedDate ) {
-                $( "#from_date" ).datepicker( "option", "maxDate", selectedDate );
-            }
-        
-        });
-        
-        
 
-    
-
-       
         
-
-
-
-    
 
     $('#add').click(function () {
         inHTML = "";
@@ -141,14 +109,7 @@ var fanme, lname, main_id ;
     
     
     
-    // get all the orders listed from the db
-    $("#emp_tbl").click(function () {  
-      
-      
-      get_users();
-      //console.log();
-        
-    });
+
     
     
      }); 

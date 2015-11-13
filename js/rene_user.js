@@ -54,10 +54,10 @@
                     var user_json = JSON.stringify(obj);
                 
                     //build html option
-                    inHTML += "<option value='" + user_json + "' >" + obj.emp_fname + "  " + obj.emp_lname + "</option>" ;
+                    inHTML += "<option value='" + obj.emp_id + "' >" + obj.emp_fname + "  " + obj.emp_lname + "</option>" ;
                 
                     //build the list by first removing the old list
-                    //$("#emp_list").empty().append(inHTML);
+                    $("#user_list").empty().append(inHTML);
                
                     
                     //console.log(obj.emp_id);
@@ -472,6 +472,15 @@ $(function () {
     $('#add_user').click(function () {
          //dialog.data( 'order_id', order_id );
         dialog_user_add.dialog( "open" );
+    });
+    
+        // get all the orders listed from the db
+    $("#emp_tbl").click(function () {  
+      
+      
+      get_users();
+      //console.log();
+        
     });
               
 });

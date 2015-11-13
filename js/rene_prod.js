@@ -436,6 +436,38 @@ $(function () {
          
         dialog_prod_add.dialog( "open" );
     });
+    
+    
+    
+    
+    
+    $("#select_prod").dblclick(function () {
+    
+
+        inHTML = "";
+        total= 0 ;
+        
+      
+    
+        $("#select_prod option:selected").each(function () {
+            inHTML += '<option value="' + $(this).val() + '">' + $(this).text() + ' - ' + $(this).val() + '</option>';
+             console.log(inHTML);
+        });
+    
+        $("#order_items").append(inHTML);
+    
+    
+        $("#order_items option").each(function () {
+
+           curr = Number($(this).val()) ;
+           total += curr ;        
+           
+        });
+
+        $("#selectedValues").text('Totali: ' + total);
+
+
+    });
 
 
               
