@@ -3,21 +3,8 @@
 
 include_once 'session.php' ;
 
-// flamur statovci
-
-// this test
-
-//again
 
 
-
-
-
-
-
-
-
- 
 ?>
 
 
@@ -46,6 +33,10 @@ include_once 'session.php' ;
     div#users-contain table td, div#users-contain table th { border: 1px solid #eee; padding: .6em 10px; text-align: left; }
     .ui-dialog .ui-state-error { padding: .3em; }
     .validateTips { border: 1px solid transparent; padding: 0.3em; }
+    
+    table, th, td {border: 1px solid black; border-collapse: collapse; }
+    td {padding: 10 px;}
+     
   </style>
   
   
@@ -63,13 +54,13 @@ include_once 'session.php' ;
       get_products();    
       get_num_rows();
         
-        //pagination();
+
         
             
     });
 
 
-var fanme, lname, main_id ; 
+var fanme, lname, main_id, total ; 
 
     // jquery start sytax
     $(function () {
@@ -84,15 +75,7 @@ var fanme, lname, main_id ;
  
     ///// CATEGORY END //////////////////////
 
-        
-
-    $('#add').click(function () {
-        inHTML = "";
-        $("#SelectBox2 option:selected").each(function () {
-            inHTML += '<option value="' + $(this).val() + '">' + $(this).text() + '</option>';
-        });
-        $("#SelectedItems").append(inHTML);
-    });
+      
         
     
     //build prod list
@@ -105,6 +88,7 @@ var fanme, lname, main_id ;
     
             
     var emp = JSON.stringify({"name" : emp_name});
+    
     var tot_price = JSON.stringify({"total" : total});
     
     

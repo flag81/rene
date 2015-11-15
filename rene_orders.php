@@ -56,6 +56,8 @@ class rene_orders {
         
         $sql = "INSERT INTO orders (`prod_list`, `emp_id`, `total_price`, `date`) VALUES ('$prod_list_json', '$emp', $total, '$today')";
             
+        //echo $sql ;
+        
 	//submit query
         $result = mysqli_query($link, $sql);
         if (!$result) 

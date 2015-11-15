@@ -182,7 +182,7 @@
         
         <tr>
             <td>Emri i kategorise:
-            <td><input type="text" id="cat_name_edit" value="">*
+            <td><input type="text" id="cat_name_edit" >*
 
         </tr>
            
@@ -217,10 +217,20 @@
 </div>
 
 <div style="float: left">    
-    <select id="order_items" size="4" multiple="multiple" style="width:200px;height : 200px"></select>
-    <p id="selectedValues"></p>
-    <input type="button" id="add_order" value="Regjistro Fakturen">
+    <select id="order_items" size="4" multiple="multiple" style="width:200px;height : 200px">
+        
+    </select>
+
    
+</div>
+
+
+<div style="clear: both;">
+    
+     Totali:
+    <input type="text" id="order_total" disabled>
+    <input type="button" id="add_order" value="Regjistro Fakturen">
+    
 </div>
     
 
@@ -287,6 +297,15 @@
         <div id="categories" style="width: 700px; height: 200px ; overflow:auto; border-style: solid; border-width: 1px">  
             
             <table id="rene_categories" >
+                
+                <thead>
+                    <tr>
+                        <th>ID
+                        <th>Name
+                        <th>Edito
+                    </tr>
+                    
+                <thead>
 
                 <tbody>
 
@@ -309,7 +328,19 @@
     <input type="button" id="add_product" value="Shto produktin">
         <div id="products" style="width: 700px; height: 200px ; overflow:auto; border-style: solid; border-width: 1px">  
             
-            <table id="rene_products" >
+            <table id="rene_products" class="tbl">
+                
+                                <thead>
+                    <tr>
+                        <th>ID
+                        <th>Name
+                        <th>Cmimi
+                        <th>Kategoria
+                        <th>Edito
+                            
+                    </tr>
+                    
+                <thead>
 
                 <tbody>
 
@@ -330,7 +361,7 @@
     
         <div id="employees" style="width: 700px; height: 200px ; overflow:auto; border-style: solid; border-width: 1px ">  
             
-            <table id="rene_users" style=" border-style: solid; border-width: 5px">
+            <table id="rene_users">
                 <thead>
                     <tr>
                         <th>NR
@@ -340,6 +371,7 @@
                         <th>Telefoni
                         <th>Email
                         <th>Niveli
+                        <th>Aksion
                     </tr>
                     
                 <thead>    
