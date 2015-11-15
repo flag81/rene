@@ -28,17 +28,20 @@
         
         request.done(function(msg){
             
-        //alert(msg); 
-            
+        
+            // get array of json objects from the json string
             var json = jQuery.parseJSON(msg);
             var inHTML = "";
             
             $( "#rene_categories tbody" ).empty();
             
-            //loop through json object
+            //loop through json object in array
             $.each(json, function(idx, obj) {
                 
-                //alert(obj.cat_id + ' '+ obj.cat_name);
+                
+                
+                // make a string this json object, store it in the edit button for quick access
+                var cat_json = JSON.stringify(obj);
                 
                 inHTML += '<option value="' + obj.cat_id+ '">' + obj.cat_name + '</option>';
                 
@@ -48,13 +51,12 @@
                 $("#category_id").empty().append(inHTML);
                 $("#category_id_edit").empty().append(inHTML);
                 
-                
-                
+               
                 
                 $( "#rene_categories tbody" ).append( "<tr>" +
                     "<td>" + obj.cat_id + "</td>" +
                     "<td>" + obj.cat_name + "</td>" +
-                    "<td><input type=button id=\"edit_cat\" value=\"Edito\" name=\"" + obj.cat_id  +"\"></td>" +
+                    "<td><input type=button id=\"edit_cat\" value=\"Edito\" name='" + cat_json  + "'></td>" +
                     "</tr>" );
             
             });
@@ -420,21 +422,31 @@ $(function () {
     //open cat dialog
 
     $(document).on( "click", "#edit_cat", function() {
-                
-        var cat_id = $(this).attr("name");  
+               
+      
+        // get the att name of the element (input button)        
+        var obj = $(this).attr("name");  
         
-        $("#cat_id_edit").val(cat_id);
+          console.log(obj);
+        // convert a json formated string into a json object
+        var json = jQuery.parseJSON(obj);
+        
+        
+        //$("#cat_id_edit").val(cat_id);
         
         
         // add data to the dialog box
-        dialog_cat_edit.data( "cat_id", cat_id );
-        dialog_cat_edit.data( "cat_name", cat_name );
+        //dialog_cat_edit.data( "cat_id", cat_id );
+       //dialog_cat_edit.data( "cat_name", cat_name );
+        
+        $("#cat_id_edit").val(json.cat_id);
+        $("#cat_name_edit").val(json.cat_name);
         
         
         //open dialog
         dialog_cat_edit.dialog( "open" );
         
-        var cat_name = get_category(cat_id);
+        //var cat_name = get_category(cat_id);
 
         
        // $("#cat_id_edit").val(cat_name);        

@@ -160,79 +160,10 @@
         
 
 
-   
-    
-    
-    
-        function add_user(id, fname , lname, phone, email,  level, password)
-        {
-            
-         
-            //console.log("oid" + order_id);
-         
-            var classname = "rene_user";
-            var method = "add_user";      
-            var args = [];
-            
-            
-            args.push(id, fname , lname, phone, email,  level, password);
-
-         
-            // disable to prevent multible 
-            //$(this).prop('disabled',true);
-         
-            var class_data = {"classname": classname, "method": method, "args": args }; // JSON object can be passed to php 
-         
-            var request =  $.ajax({
-                type: 'POST',
-                url: 'controller.php',
-                data: class_data,
-                dataType: "text" 
-                
-            });
-        
-           request.done(function(msg){
-                alert(msg); 
-                
-                // refresh order list by simulating the click even on List orders button with spec id #order_list
-                
-                //remove previous list               
-                //$( "#rene_orders tbody" ).empty();
-                                                
-            
-                // reload order list
-                //$( "#order_list" ).trigger( "click" );
-                 
-                 return true;
-                
-            });
-        
-            request.fail(function(jqXHR, textStatus) {
-                alert('#delete_order fail.'); 
-                
-                return '#add_cat fail';
-            });
-            
-            
-            
-            
-            
-        }
-        
-        
-
-        
-        
-
-        
-        
-        
-        
 $(function () {
     
     
-
-        
+     
         var dialog, dialog_order_edit, form,
      
         emailRegex = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/,
@@ -509,9 +440,10 @@ $(function () {
            
         });
         
+       var order_total = $("#order_total").val();
        
         
-        args.push(prod_list, main_id, total);
+        args.push(prod_list, main_id, order_total);
         
         console.log(args);
 
@@ -675,7 +607,7 @@ $(function () {
     });
    
     
- 
+    
     
     
     $("#order_items").dblclick(function () {
@@ -683,9 +615,8 @@ $(function () {
         
         $("#order_items option:selected").each(function () {
         }).remove();
-        
+                
         total= 0 ;
-     
         
         $("#order_items option").each(function () {
 
@@ -694,7 +625,7 @@ $(function () {
                   
         });
 
-        $("#selectedValues").text('Totali: ' + total);
+        $("#order_total").val(total);
     
     
     

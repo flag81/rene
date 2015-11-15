@@ -464,7 +464,8 @@ $(function () {
            
         });
 
-        $("#selectedValues").text('Totali: ' + total);
+        $("#order_total").val(total);
+
 
 
     });
