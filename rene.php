@@ -60,7 +60,7 @@ include_once 'session.php' ;
     });
 
 
-var fanme, lname, main_id, total ; 
+var fanme, lname, main_id, total, user_level ; 
 
     // jquery start sytax
     $(function () {
@@ -70,6 +70,7 @@ var fanme, lname, main_id, total ;
         fname = "<?php echo $fname ?>" ;
         lname = "<?php echo $lname ?>";
         main_id = "<?php echo $mainid ?>";
+        user_level = "<?php echo $level ?>";
     
     
  
@@ -79,17 +80,15 @@ var fanme, lname, main_id, total ;
         
     
     //build prod list
-    var data_arr = [];
-    
+    var data_arr = [];   
     // user info
     var emp_name = fname + " " + lname;
     
-    //alert(emp_name) ;
     
-            
-    var emp = JSON.stringify({"name" : emp_name});
+    //alert(emp_name) ;            
+    //var emp = JSON.stringify({"name" : emp_name});
     
-    var tot_price = JSON.stringify({"total" : total});
+   // var tot_price = JSON.stringify({"total" : total});
     
     
     
@@ -118,8 +117,42 @@ var fanme, lname, main_id, total ;
 </head>
 
 <body>
+
+<div>
+        
+        <?php   echo $fname." ".$lname." " .$level ?>
+        
+</div>
     
-<?php include "rene_body.php"; ?>    
+    
+<?php 
+
+
+
+
+
+//include "rene_body.php"; 
+
+if($level == 2)
+{        
+    include "rene_orders_view.php"; 
+}
+else if($level == 1 )
+{
+
+include "rene_orders_view.php"; 
+include "rene_category_view.php"; 
+include "rene_product_view.php"; 
+include "rene_user_view.php"; 
+
+}
+
+
+
+?>   
+    
+    
+    
 
 </body>
 </html>

@@ -28,7 +28,7 @@
 </div>
     
     
-<div id="dialog-form-user-add" style="clear: both; border-style: solid; border-width: 1px; width: 500px ; ">
+<div id="dialog-form-user-add" title="Shto perdoruesin" style="clear: both; border-style: solid; border-width: 1px; width: 500px ; ">
      <table>
          
          <form id="add_emp_frm" action="">
@@ -61,7 +61,7 @@
 </div>
 
 
-<div id="dialog-form-user-edit" style="clear: both; border-style: solid; border-width: 1px; width: 500px ; ">
+<div id="dialog-form-user-edit" title="Edito Perdoruesin" style="clear: both; border-style: solid; border-width: 1px; width: 500px ; ">
      <table>
          
          <form id="add_emp_frm" action="">
@@ -100,7 +100,7 @@
     
     
 
-<div id="dialog-form-prod-add" style="clear: both; border-style: solid; border-width: 1px; width: 500px ; ">
+<div id="dialog-form-prod-add" title="Shto produktin" style="clear: both; border-style: solid; border-width: 1px; width: 500px ; ">
      <table>
         <tr> 
             <td>Kategoria
@@ -117,12 +117,11 @@
             <td>Cmimi:<td><input type="text" id="prod_price" maxlength="5">*
 
     </table>
-
 </div>  
 
 
 
-<div id="dialog-form-prod-edit" style="clear: both; border-style: solid; border-width: 1px; width: 500px ; ">
+<div id="dialog-form-prod-edit" title="Edito produktin" style="clear: both; border-style: solid; border-width: 1px; width: 500px ; ">
      <table>
          
         <tr>
@@ -149,7 +148,7 @@
 
   
     
-<div id = "dialog-form-cat" style="clear: both; border-style: solid; border-width: 1px; width: 500px ; ">
+<div id = "dialog-form-cat" title="Shto kategorine" style="clear: both; border-style: solid; border-width: 1px; width: 500px ; ">
      <table>
         <tr> 
             <td align="center" colspan="2">Shto Kategorine 
@@ -167,7 +166,7 @@
 </div> 
     
     
-<div id = "dialog-form-cat-edit" style="clear: both; border-style: solid; border-width: 1px; width: 500px ; ">
+<div id = "dialog-form-cat-edit" title="Edito kategorine" style="clear: both; border-style: solid; border-width: 1px; width: 500px ; ">
      <table>
         <tr> 
             <td align="center" colspan="2">Edit Kategorine 
@@ -190,13 +189,12 @@
     </table>
 </div>  
     
-    
-    
-    <div>
+      
+<div>
         
-        <?php   echo $fname." ".$lname ?>
+    <?php   echo $fname." ".$lname ?>
         
-    </div>
+</div>
  
 
     

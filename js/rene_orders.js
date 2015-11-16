@@ -242,9 +242,24 @@ $(function () {
         function del_order_btn()
         {
      
-            var order_id = $("#order_id").val();
-            
-            delete_order(order_id);
+     
+     
+            //alert(user_level);
+             
+             if (user_level == 1)
+             {
+                 
+                var order_id = $("#order_id").val();
+                delete_order(order_id);
+                 
+             }
+             else
+             {  
+                alert("Nuk keni qasje administrative per te fshire porosite");
+                return false;
+             }
+             
+
             //dialog.dialog( "close" );
             
         }
@@ -440,16 +455,17 @@ $(function () {
            
         });
         
+        
        var order_total = $("#order_total").val();
        
         
         args.push(prod_list, main_id, order_total);
         
-        console.log(args);
+        //console.log(args);
 
         var class_data = {"classname": classname, "method": method, "args": args };
         
-        console.log(class_data);
+        //console.log(class_data);
         
         //var send_data = JSON.stringify(data_obj);
       
@@ -457,6 +473,7 @@ $(function () {
         {
             
             alert('Faktura nuk duhet jete e zbrazet');
+            
             $("#add_order").prop('disabled',false);
             return false;
             
@@ -470,16 +487,24 @@ $(function () {
                 
         });
         
-           request.done(function(msg){
+            request.done(function(msg){
+            
                 alert(msg); 
                 
-                $("#SelectedItems option").remove().end();
+                // clear the order list on success
+                $("#order_items option").remove().end();
+                
+                
+                //enable to #add_order button on success
                 $("#add_order").prop('disabled',false);
                 
-                
+                // empty the orders table
                 $( "#rene_orders tbody" ).empty();
+                
+                //reset to total price to 0 
+                $("#order_total").val(0);
                                                          
-                // reload order list
+                // reload order list by cimulating click on the button #order_list
                 $( "#order_list" ).trigger( "click" );
                 
                 
@@ -487,19 +512,17 @@ $(function () {
             });
         
             request.fail(function(jqXHR, textStatus) {
-                alert('#add_order fail.');  
+                alert('Deshtoi shtimi i faktures ne sistem.');  
+                
                 $("#add_order").prop('disabled',false);
             });
-      
-        
-        //console.log();
  
     });
     
     
     
     
-    // get all the orders listed from the db
+    // get all the orders listed from the db, button 
     $("#order_list").click(function () {  
 
         
