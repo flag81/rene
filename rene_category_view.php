@@ -10,11 +10,10 @@
 
 <br>
 
-<div>
-    <input type="button" id="cat_list" value="Lista e kategorive">
-    <input type="button" id="add_cat" value="Shto category">
-    
+
         <div id="categories" style="width: 700px; height: 200px ; overflow:auto; border-style: solid; border-width: 1px">  
+            <input type="button" id="cat_list" value="Lista e kategorive">
+            <input type="button" id="add_cat" value="Shto category">
             
             <table id="rene_categories" >
                 
@@ -34,7 +33,7 @@
             </table>
             
         </div>
-</div>
+
 
 
 <div id = "dialog-form-cat" title="Shto kategorine" style="clear: both; border-style: solid; border-width: 1px; width: 500px ; ">

@@ -10,10 +10,12 @@
 <br>
 
 <div>
-    <input type="button" id="emp_tbl" value="Lista e usereve"> 
-    <input type="button" id="add_user" value="Shto user">
+
     
         <div id="employees" style="width: 700px; height: 200px ; overflow:auto; border-style: solid; border-width: 1px ">  
+            
+            <input type="button" id="emp_tbl" value="Lista e usereve"> 
+            <input type="button" id="add_user" value="Shto user">
             
             <table id="rene_users">
                 <thead>
@@ -25,7 +27,8 @@
                         <th>Telefoni
                         <th>Email
                         <th>Niveli
-                        <th>Aksion
+                        <th>Edito
+                            
                     </tr>
                     
                 <thead>    

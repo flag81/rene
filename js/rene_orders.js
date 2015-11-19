@@ -16,16 +16,17 @@
             var class_data = {"classname": classname, "method": method, "args": args };
          
             var request =  $.ajax({
-            type: 'POST',
-            url: 'controller.php',
-            data: class_data  ,
-            dataType: "text" 
+                type: 'POST',
+                url: 'controller.php',
+                data: class_data  ,
+                dataType: "text" 
                 
             });
         
             request.done(function(msg){
             
                 alert(msg); 
+                $( "#order_list" ).trigger( "click" );
                 //return msg ;
 
             }); 
@@ -44,7 +45,7 @@
             
             var order_id = order_id; 
          
-            console.log("oid:" + order_id);
+            //console.log("oid:" + order_id);
          
             var classname = "rene_orders";
             var method = "delete_order";      
@@ -164,7 +165,7 @@ $(function () {
     
     
      
-        var dialog, dialog_order_edit, form,
+        var dialog, dialog_order_edit, dialog_order_add, form,
      
         emailRegex = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/,
         name = $( "#name" ),
@@ -212,7 +213,7 @@ $(function () {
             
             
             var valid = true;
-            allFields.removeClass( "ui-state-error" );
+            //allFields.removeClass( "ui-state-error" );
  
             valid = valid && checkLength( name, "username", 0, 160 );
 
@@ -231,7 +232,11 @@ $(function () {
                 
                 // call update method
                 update_order(o_id, notice);
-                //dialog.dialog( "close" );
+                
+                dialog_order_edit.dialog( "close" );
+               
+                
+                
             }
             
             return valid;
@@ -298,10 +303,11 @@ $(function () {
         
             
             //console.log(cat_name);
+            dialog_order_add.dialog( "close" );
             
             var t = add_user(id, fname , lname, phone, email,  level, password);
             
-            dialog_order_add.dialog( "close" );
+            
             
         }
  
@@ -312,9 +318,7 @@ $(function () {
         {
             
             //console.log(cat_name);
-            //var t = add_cat_func(cat_name);
-            
-            
+
             var res = update_user();
             
             dialog_order_edit.dialog( "close" );
@@ -345,7 +349,7 @@ $(function () {
       },
       close: function() {
         //form[0].reset();
-        allFields.removeClass( "ui-state-error" );
+        //allFields.removeClass( "ui-state-error" );
       }
       
     });

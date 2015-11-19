@@ -68,7 +68,7 @@ class rene_user {
     {   
         $sql = "DELETE FROM employees WHERE `id` = \"$id\" LIMIT 1";
         
-        echo $sql ;
+        //echo $sql ;
        
        include 'connect.php';
        
@@ -134,8 +134,11 @@ class rene_user {
     
     
     
-    function update_user($id, $emp_id, $emp_fname, $emp_lname, $emp_phone,$emp_email, $emp_level )
+    function update_user($id, $emp_id, $emp_fname, $emp_lname, $emp_phone,$emp_email, $emp_level, $emp_password)
     {   
+        
+        
+        //check for password cheking on the server side as well-in the future
         
         $sql = "UPDATE employees SET `emp_id`=\"$emp_id\", `emp_fname`=\"$emp_fname\", `emp_lname`=\"$emp_lname\" , `emp_phone`=\"$emp_phone\" , `emp_email`=\"$emp_email\" , `emp_level`=\"$emp_level\" WHERE `id` = \"$id\" LIMIT 1";
         

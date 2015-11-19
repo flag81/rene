@@ -12,11 +12,9 @@
             var method = "get_all_products";
             var args = new Array('');
          
-
          
             var class_data = {"classname": classname, "method": method, "args": args };
-         
-         
+                  
             //console.log(class_data);
             
             //get all employees and load them in the select box
@@ -33,6 +31,10 @@
             //alert(msg); 
             
                 var json = jQuery.parseJSON(msg);
+            
+                json_prod_array = json; 
+                
+                $( "#select_cat" ).prop("selectedIndex",0).trigger("change");
             
                 //console.log(json.length)
             
@@ -52,7 +54,7 @@
                                
                 var prod_json = JSON.stringify(obj);
                                
-                //console.log(prod_json);
+                    //console.log(prod_json);
                     //
                     //build a table to display all the users
                 
@@ -119,6 +121,7 @@
            request.done(function(msg){
                 alert(msg); 
                 
+                 get_products();
                 // refresh order list by simulating the click even on List orders button with spec id #order_list
                 
                 //remove previous list               
@@ -175,6 +178,7 @@
         
            request.done(function(msg){
                 alert(msg); 
+                get_products();
                 
                 // refresh order list by simulating the click even on List orders button with spec id #order_list
                 
@@ -190,7 +194,7 @@
             });
         
             request.fail(function(jqXHR, textStatus) {
-                alert('#delete_cat fail.'); 
+                alert('#delete_prod fail.'); 
                 
                 return '#fail';
             });
@@ -260,7 +264,7 @@
             });
         
             request.fail(function(jqXHR, textStatus) {
-                alert('#delete_cat fail.'); 
+                alert('#update_prod fail.'); 
                 
                 return '#fail';
             });
@@ -307,6 +311,8 @@ $(function () {
             var t = add_prod(prod_cat, prod_name , prod_price);
             
             dialog_prod_add.dialog( "close" );
+            
+           
             
         }
  

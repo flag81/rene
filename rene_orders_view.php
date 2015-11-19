@@ -8,6 +8,7 @@
 
 
 ?>
+<div>
 
 
 <div style="float: left">
@@ -35,10 +36,14 @@
 </div>
 
 
-<div style="clear: both;">
+
+</div>
+
+
+<div style="">
     
-     Totali:
-    <input type="text" id="order_total" disabled>
+     Totali:<br><br>
+    <input type="text" id="order_total" width="30" disabled style="border-radius: 0; border: 1px dotted #999; font-size   : 100%;  width : 100px; height : 50px; "><br><br>
     <input type="button" id="add_order" value="Regjistro Fakturen">
     
 </div>
@@ -54,7 +59,12 @@
 <div style="clear: both; border-style: solid; border-width: 1px; width: 700px ; "> 
     
 
-        <input type="button" id="order_list" value="Listo Fakturat"/> 
+
+
+        <div id="orders" style="width: 700px; height: 300px ; overflow:auto; border-style: solid; border-width: 1px"> 
+            
+            
+                    <input type="button" id="order_list" value="Listo Fakturat"/> 
         
         <select id="user_list">
             
@@ -64,8 +74,6 @@
             <input type="text" id="from_date" name="from_date">
         <label for="to">deri</label>
             <input type="text" id="to_date" name="to_date">
-
-        <div id="orders" style="width: 700px; height: 300px ; overflow:auto; border-style: solid; border-width: 1px"> 
             
             
             <table id="rene_orders" >

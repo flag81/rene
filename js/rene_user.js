@@ -4,6 +4,9 @@
  * and open the template in the editor.
  */
 
+        var dialog_user_add , dialog_user_edit, form,emailRegex, name, allFields, tips ;
+     
+
 
         function get_users()
         {
@@ -138,7 +141,8 @@
                 // reload order list
                 //$( "#order_list" ).trigger( "click" );
                  
-                 return true;
+                 //return true;
+                 get_users();
                 
             });
         
@@ -186,6 +190,8 @@
            request.done(function(msg){
                 alert(msg); 
                 
+                //reload users
+                get_users();
                 // refresh order list by simulating the click even on List orders button with spec id #order_list
                 
                 //remove previous list               
@@ -218,18 +224,28 @@
          
             //console.log("oid" + order_id);
          
-               
-            
+                
             var user_nr = $("#user_nr_edit").val();
             var emp_id = $("#user_id_edit").val();
             var emp_fname = $("#user_fname_edit").val();
-            var emp_lname = $("#user_lname_edit").val();
-        
+            var emp_lname = $("#user_lname_edit").val();        
             var emp_phone = $('#user_phone_edit').val();
-            var emp_email = $('#user_email_edit').val();
-            
+            var emp_email = $('#user_email_edit').val();            
+            var password = $('#user_password_edit').val();        
+            var password_re = $('#user_password_re_edit').val();            
             var emp_level = $("#user_level_edit option:selected").val();
-        
+            
+            
+            console.log(password);
+            console.log(password_re);
+            
+            if( password.trim() !== password_re.trim()) 
+            {
+                alert("Ju lutem konfimo passwordin (*)!");
+                return false;
+ 
+            } 
+            
             
             var classname = "rene_user";
             var method = "update_user";      
@@ -254,7 +270,10 @@
             });
         
            request.done(function(msg){
+                
                 alert(msg); 
+                
+                get_users();
                 
                 // refresh order list by simulating the click even on List orders button with spec id #order_list
                 
@@ -286,12 +305,11 @@
 $(function () {
               
         
-        var dialog,  dialog_user_add, dialog_user_edit, form,
-     
-        emailRegex = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/,
-        name = $( "#name" ),
+        emailRegex = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/ ;
+        
+        name = $( "#name" ) ;
 
-        allFields = $( [] ).add( name ),
+        //allFields = $( [] ).add( name ); 
         tips = $( ".validateTips" );
         
     
@@ -323,19 +341,27 @@ $(function () {
                 return false;
             } 
         
+            //password checking 
+        
             if( password.trim() != password_re.trim()) 
             {
                 alert("Ju lutem konfimo passwordin (*)!");
                 return false;
  
             }  
+            
+            console.log(password);
+            console.log(password_re);
         
+            
             
             //console.log(cat_name);
             
+            dialog_user_add.dialog( "close" );
+            
             var t = add_user(id, fname , lname, phone, email,  level, password);
             
-            dialog_prod_add.dialog( "close" );
+            
             
         }
  
@@ -364,6 +390,10 @@ $(function () {
             //var t = add_cat_func(cat_name);
             
             
+            //password credentials
+            
+            
+            
             var res = update_user();
             
             dialog_user_edit.dialog( "close" );
@@ -385,7 +415,7 @@ $(function () {
       },
       close: function() {
         //form[ 0 ].reset();
-        allFields.removeClass( "ui-state-error" );
+        //allFields.removeClass( "ui-state-error" );
       }
         
     });
@@ -405,7 +435,7 @@ $(function () {
         },
             close: function() {
             //form[ 0 ].reset();
-            allFields.removeClass( "ui-state-error" );
+            //allFields.removeClass( "ui-state-error" );
       }
         
     });
@@ -471,6 +501,7 @@ $(function () {
 
     $('#add_user').click(function () {
          //dialog.data( 'order_id', order_id );
+         //alert('ccc');
         dialog_user_add.dialog( "open" );
     });
     

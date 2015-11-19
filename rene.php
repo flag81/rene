@@ -53,48 +53,32 @@ include_once 'session.php' ;
       get_users();
       get_products();    
       get_num_rows();
-        
-
-        
+      
             
     });
 
 
-var fanme, lname, main_id, total, user_level ; 
+    var fanme, lname, main_id, total, user_level, json_prod_array ; 
 
     // jquery start sytax
     $(function () {
         
 
 
-        fname = "<?php echo $fname ?>" ;
-        lname = "<?php echo $lname ?>";
-        main_id = "<?php echo $mainid ?>";
-        user_level = "<?php echo $level ?>";
-    
-    
- 
-    ///// CATEGORY END //////////////////////
-
-      
         
-    
+        
+    fname = "<?php echo $fname ?>" ;
+    lname = "<?php echo $lname ?>";
+    main_id = "<?php echo $mainid ?>";
+    user_level = "<?php echo $level ?>";
+
+
     //build prod list
     var data_arr = [];   
     // user info
     var emp_name = fname + " " + lname;
     
-    
-    //alert(emp_name) ;            
-    //var emp = JSON.stringify({"name" : emp_name});
-    
-   // var tot_price = JSON.stringify({"total" : total});
-    
-    
-    
 
-    
-    
      }); 
     
     

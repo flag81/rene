@@ -11,9 +11,10 @@
 <br>
 
 <div>
-    <input type="button" id="prod_tbl" value="Lista e produkteve">
-    <input type="button" id="add_product" value="Shto produktin">
-        <div id="products" style="width: 700px; height: 200px ; overflow:auto; border-style: solid; border-width: 1px">  
+
+        <div id="products" style="width: 700px; height: 200px ; overflow:auto; border-style: solid; border-width: 1px"> 
+            <input type="button" id="prod_tbl" value="Lista e produkteve">
+            <input type="button" id="add_product" value="Shto produktin">
             
             <table id="rene_products" class="tbl">
                 

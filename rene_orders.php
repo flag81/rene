@@ -6,7 +6,7 @@
  * @author fstatovci
  */
 
-//include 'connect.php';
+include 'session.php';
 //error_reporting(E_ALL);
 
 
@@ -115,7 +115,11 @@ class rene_orders {
     
     function update_order($id, $notes)
     {   
-        $sql = "UPDATE orders SET `notes`=\"$notes\" WHERE `id` = \"$id\" LIMIT 1";
+        
+        $user = $_SESSION['fname']." ".$_SESSION['lname'];
+        $today = date("Y-m-d H:i:s"); 
+        
+        $sql = "UPDATE orders SET `notes`=concat(`notes`, \"$user\", '(' , \"$today\" , '):' ,\"$notes\", \"<br>\") WHERE `id` = \"$id\" LIMIT 1";
         
         //echo $sql ;
        
