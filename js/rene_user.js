@@ -36,7 +36,9 @@
             
                 var json = jQuery.parseJSON(msg);
             
-                //console.log(json.length)
+                //json_users_array = json; 
+            
+                //console.log(json_user_array)
             
                 //console.log(json);
             
@@ -75,7 +77,7 @@
                         "<td>" + obj.emp_lname + "</td>" +
                         "<td>" + obj.emp_phone + "</td>" +
                         "<td>" + obj.emp_email + "</td>" +
-                        "<td>" + obj.emp_level + "</td>" +
+                        "<td>" + obj.emp_cat_name + "</td>" +
                         "<td><input type=button id=\"edit_user\" value=\"Edit\" name='" + user_json  +"'></td>" +
                         "</tr>" );
                 
@@ -375,7 +377,9 @@ $(function () {
         function del_user_btn()
         {
             
-            
+            if (confirm("A deshironi ta fshini perdoruesin") != true) {
+                 return false;
+            } 
             var res = delete_user();
             
             dialog_user_edit.dialog( "close" );

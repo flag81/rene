@@ -167,7 +167,13 @@ class rene_user {
     function get_all_users()
     {
         
-        $sql = "SELECT `id`, `emp_id`, `emp_fname`, `emp_lname`, `emp_phone`, `emp_email`, `emp_level` FROM employees WHERE `active` = 1 ";
+        $sql = "SELECT employees.`id`, employees.`emp_id`, employees.`emp_fname`, employees.`emp_lname`, employees.`emp_phone`, employees.`emp_email`, employees.`emp_level` "
+                . " , emp_categories.emp_cat_name"
+                . " FROM employees "
+                . " LEFT JOIN emp_categories"
+                . " ON employees.`emp_level` = emp_categories.emp_cat_id "
+                . " "
+                . " WHERE employees.`active` = 1 ";
         
        //echo $sql ;
         

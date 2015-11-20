@@ -360,6 +360,10 @@ $(function () {
         {
             //get cat_name from db
             
+            if (confirm("A deshironi ta fshini kategorine") != true) {
+                 return false;
+            } 
+            
             dialog_cat_edit.dialog( "close" );
             delete_cat();
             get_categories();
@@ -475,13 +479,7 @@ $(function () {
             //console.log(json_prod_array);
                 
                 $.each(json_prod_array, function(idx, obj1) {
-                               
-                               
-                //var p_json = JSON.stringify(obj);
-                
-                    //console.log(obj1.category_id);
-                    
-                    
+
                     if(obj1.category_id == category_id)
                     {
                         //console.log(obj1.prod_name);

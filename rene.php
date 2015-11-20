@@ -58,7 +58,7 @@ include_once 'session.php' ;
     });
 
 
-    var fanme, lname, main_id, total, user_level, json_prod_array ; 
+    var fanme, lname, main_id, total, user_level, json_prod_array, json_users_array  ; 
 
     // jquery start sytax
     $(function () {

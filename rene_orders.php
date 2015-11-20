@@ -207,16 +207,20 @@ class rene_orders {
     function get_all_orders($user_id, $from_date, $to_date, $page_num)
     {
         
-    //pagination
+        //pagination data
         
         $per_page = 10;
         $show_from = $per_page * ($page_num - 1);
         $show_to = $show_from + $per_page ;
         
         
-    
         
-        $sql = "SELECT SQL_CALC_FOUND_ROWS `id`, `prod_list`, `emp_id`, `total_price`, `date`,`notes` FROM orders WHERE `active` = 1 ";
+        $sql = "SELECT SQL_CALC_FOUND_ROWS orders.`id`, orders.`prod_list`, orders.`emp_id`, orders.`total_price`, orders.`date`, orders.`notes`, employees.emp_fname, employees.emp_lname "
+                              
+                . " FROM orders "
+                . " LEFT JOIN `employees`"
+                . " ON orders.emp_id = employees.emp_id"
+                . " WHERE orders.`active` = 1 ";
         
         
         if(!empty($user_id))

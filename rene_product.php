@@ -145,7 +145,11 @@ class rene_product {
     function get_all_products($cat_id)
     {
         
-        $sql = "SELECT `category_id`, `prod_id`, `prod_name`, `prod_price` FROM products WHERE `active` = 1  ";
+        $sql = "SELECT products.`category_id`, products.`prod_id`, products.`prod_name`, products.`prod_price` , prod_categories.cat_name"
+                . " FROM products "
+                . " LEFT JOIN prod_categories "
+                . " ON products.`category_id` = prod_categories.cat_id"
+                . " WHERE products.`active` = 1  ";
         
        //echo $sql ;
         

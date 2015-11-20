@@ -62,7 +62,7 @@
                     "<td>" + obj.prod_id + "</td>" +
                     "<td>" + obj.prod_name + "</td>" +
                     "<td>" + obj.prod_price + "</td>" +
-                    "<td>" + obj.category_id + "</td>" +
+                    "<td>" + obj.cat_name + "</td>" +
                     "<td><input type=button id=\"edit_prod\" value=\"Edito\" name= '" + prod_json + "'></td>" +
                     "</tr>" );
                 
@@ -326,7 +326,9 @@ $(function () {
         function del_prod_btn()
         {
             
-            
+            if (confirm("A deshironi ta fshini produktin") != true) {
+                 return false;
+            } 
             
             var res = delete_prod();
             

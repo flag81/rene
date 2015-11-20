@@ -94,7 +94,6 @@
             $("#current_page").val(id) ;
             $( "#order_list" ).trigger( "click" );
             
-            
         }
         
         function get_num_rows()
@@ -244,10 +243,17 @@ $(function () {
         
         
         
+        
+        
         function del_order_btn()
         {
      
+            
+            if (confirm("A deshironi ta fshini porosine") != true) {
+                 return false;
+            } 
      
+            dialog_order_edit.dialog( "close" );
      
             //alert(user_level);
              
@@ -596,6 +602,9 @@ $(function () {
                     //$("#orders").html(msg);
                     
             var json = jQuery.parseJSON(msg);
+            
+            console.log(json);
+            
             var inHTML = "";
             
             
@@ -607,11 +616,11 @@ $(function () {
                 
    
                            
-                 $( "#rene_orders tbody" ).append( "<tr>" +
+                $( "#rene_orders tbody" ).append( "<tr>" +
                     "<td>" + obj.id + "</td>" +
                     "<td>" + obj.prod_list + "</td>" +
                     "<td>" + obj.total_price + "</td>" +
-                    "<td>" + obj.emp_id + "</td>" +
+                    "<td>" + obj.emp_fname + " " + obj.emp_lname + "</td>" +
                     "<td>" + obj.notes + "</td>" +
                     "<td>" + obj.date + "</td>" +
                     "<td><input type=button id=\"edit_order\" value=\"Edito\" name=\"" + obj.id  +"\"></td>" +
